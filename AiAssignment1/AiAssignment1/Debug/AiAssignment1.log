@@ -1,0 +1,29 @@
+﻿  AiAssignment1.cpp
+D:\VisualStudio\AiAssignment1\AiAssignment1\Row.h(43,9): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Map.h(32,21): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Map.h(45,21): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Map.h(189,13): warning C4018: '<=': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(109,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(129,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(149,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(169,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(188,22): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(206,21): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(211,22): warning C4018: '<': signed/unsigned mismatch
+  Robot.cpp
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(221,22): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Row.h(43,9): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Map.h(32,21): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Map.h(45,21): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Map.h(189,13): warning C4018: '<=': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(109,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(129,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(149,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(169,23): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(188,22): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(206,21): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(211,22): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+D:\VisualStudio\AiAssignment1\AiAssignment1\Robot.h(221,22): warning C4018: '<': signed/unsigned mismatch
+D:\VisualStudio\AiAssignment1\AiAssignment1\Space.h(100): warning C4715: 'Space::disType': not all control paths return a value
+  AiAssignment1.vcxproj -> D:\VisualStudio\AiAssignment1\Debug\AiAssignment1.exe
