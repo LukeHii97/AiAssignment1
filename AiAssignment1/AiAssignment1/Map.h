@@ -186,7 +186,7 @@ public:
 
 	bool isDown(int x)
 	{
-		if (x + 1 <= fMap.size())
+		if (x + 1 < fMap.size())
 			return true;
 		else
 			return false;

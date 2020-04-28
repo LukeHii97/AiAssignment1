@@ -33,14 +33,14 @@ public:
 
 	bool left(int y)
 	{
-		if (y > 0)
+		if (y-1 >= 0)
 			return true;
 		else
 			return false;
 	}
 	bool right(int y)
 	{
-		if (y < fRow.size())
+		if (y + 1 < fRow.size())
 			return true;
 		else
 			return false;

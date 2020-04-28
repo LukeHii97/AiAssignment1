@@ -9,12 +9,12 @@ private:
 	vector<NTree> trees;
 	vector<Space*> history;
 	int level = 0;
-	int posX=-1, posY = -1;
+	int posX = -1, posY = -1;
 	NTree root;
 public:
 	Robot()
 	{}
-	Robot(Map &m)
+	Robot(Map& m)
 	{
 		map = &m;
 		for (int i = 0; i < map->getRowSize(); i++)
@@ -25,13 +25,20 @@ public:
 				{
 					posX = i;
 					posY = j;
-					
+					cout << "posX:" << posX << endl;
+					cout << "posY:" << posY << endl;
 					break;
 				}
 			}
 		}
-		root= NTree(map->getRow(posX)->getSpace(posY));
+		root = NTree(map->getRow(posX)->getSpace(posY));
+
+		//ChkGetNearBy(0, 0);
 		autoAttach(&root);
+		//cout << "root: x:" << root.key().getX() << " y:" << root.key().getY() << endl;
+		//attachRoot();
+		//attachRoot(&root);
+		//root.attachNTree();
 		cout << "hello this is consturtor" << endl;
 	}
 	~Robot()
@@ -48,7 +55,7 @@ public:
 		return map->getSpace(posX, posY);
 	}
 
-	void addHistory(Space &sp)
+	void addHistory(Space& sp)
 	{
 		history.push_back(&sp);
 	}
@@ -56,10 +63,10 @@ public:
 	void moveUp()
 	{
 		if (map->isUp(posX))
-		{ 
+		{
 			getLocation()->setSpaceType(Type::WALKED);
 			posX -= 1;
-			
+
 		}
 	}
 	void moveDown()
@@ -99,99 +106,103 @@ public:
 		return &trees[z];
 	}
 
-	vector<Space*> getNearBy(int x,int y)
+	vector<Space*> getNearBy(int x, int y)
 	{
 		vector<Space*> s{};
 		bool ch = true;
+
 		cout << "ori x: " << x << " y: " << y << endl;
-			if (map->isUp(x))
+
+		//Up
+		if (map->isUp(x))
+		{
+			if (map->getRow(x - 1)->getSpace(y)->getSpaceType() != Type::BLOCK)
 			{
 				for (int i = 0; i < history.size(); i++)
 				{
-					if (map->getRow(x - 1)->getSpace(y) == history[i] || map->getRow(x - 1)->getSpace(y)->getSpaceType() == Type::BLOCK)
+					if (map->getRow(x - 1)->getSpace(y) == history[i])
 					{
 						ch = false;
-						break;
 					}
 				}
-				if (ch==true)
+				if (ch)
 				{
-					cout << "Up" << endl;
-					cout << " x: " << map->getRow(x - 1)->getSpace(y)->getX() << " y: " << map->getRow(x - 1)->getSpace(y)->getY() << endl;
 					s.push_back(map->getRow(x - 1)->getSpace(y));
 					addHistory(*map->getRow(x - 1)->getSpace(y));
 				}
-				else
-					ch = true;
+				ch = true;
 			}
-			if (map->isDown(x))
+		}
+
+		if (map->isDown(x))
+		{
+			if (map->getRow(x + 1)->getSpace(y)->getSpaceType() != Type::BLOCK)
 			{
 				for (int i = 0; i < history.size(); i++)
 				{
-					if (map->getRow(x + 1)->getSpace(y) == history[i] || map->getRow(x + 1)->getSpace(y)->getSpaceType() == Type::BLOCK)
+					if (map->getRow(x + 1)->getSpace(y) == history[i])
 					{
 						ch = false;
-						break;
 					}
 				}
-				if (ch == true) 
+				if (ch)
 				{
-					cout << "Down" << endl;
-					cout << " x: " << map->getRow(x + 1)->getSpace(y)->getX() << " y: " << map->getRow(x + 1)->getSpace(y)->getY() << endl;
 					s.push_back(map->getRow(x + 1)->getSpace(y));
 					addHistory(*map->getRow(x + 1)->getSpace(y));
 				}
-				else
-					ch = true;
+				ch = true;
 			}
-			if (map->isLeft(y))
+		}
+
+		if (map->isLeft(y))
+		{
+
+			if (map->getRow(x)->getSpace(y - 1)->getSpaceType() != Type::BLOCK)
 			{
 				for (int i = 0; i < history.size(); i++)
 				{
-					if (map->getRow(x)->getSpace(y - 1) == history[i] || map->getRow(x)->getSpace(y - 1)->getSpaceType() == Type::BLOCK)
+					if (map->getRow(x)->getSpace(y - 1) == history[i])
 					{
 						ch = false;
-						break;
 					}
 				}
-				if (ch == true)
+				if (ch)
 				{
-					cout << "Left" << endl;
-					cout << " x: " << map->getRow(x)->getSpace(y-1)->getX() << " y: " << map->getRow(x)->getSpace(y-1)->getY() << endl;
 					s.push_back(map->getRow(x)->getSpace(y - 1));
 					addHistory(*map->getRow(x)->getSpace(y - 1));
 				}
-				else
-					ch = true;
+				ch = true;
 			}
-			if (map->isRight(y))
+		}
+		if (map->isRight(y))
+		{
+			if (map->getRow(x)->getSpace(y + 1)->getSpaceType() != Type::BLOCK)
 			{
-				for (int i = 0; i < history.size(); i++)
+				for(int i=0;i<history.size();i++)
 				{
-					if (map->getRow(x)->getSpace(y + 1) == history[i] || map->getRow(x)->getSpace(y + 1)->getSpaceType() == Type::BLOCK)
+					if(map->getRow(x)->getSpace(y + 1)== history[i])
 					{
 						ch = false;
-						break;
 					}
 				}
 				if (ch == true)
 				{
-					cout << "Right" << endl;
-					cout << " x: " << map->getRow(x)->getSpace(y+1)->getX() << " y: " << map->getRow(x)->getSpace(y+1)->getY() << endl;
 					s.push_back(map->getRow(x)->getSpace(y + 1));
 					addHistory(*map->getRow(x)->getSpace(y + 1));
 				}
-				else
-					ch = true;
 			}
-			cout << "History: " << endl;
-			for (int i = 0; i < history.size(); i++)
-			{
-				cout << " x: " << history[i]->getX()<< " y: " << history[i]->getY() << endl;
+		}
 
-			}
+		cout << "History: " << endl;
+		for (int i = 0; i < history.size(); i++)
+		{
+			cout << " x: " << history[i]->getX() << " y: " << history[i]->getY() << endl;
+		}
+
 		return s;
 	}
+
+
 
 	void autoAttach(NTree *tr)
 	{
@@ -203,9 +214,11 @@ public:
 		cout << "x : " << tr->key().getX() << " y:" << tr->key().getY() << endl;
 		cout << "sp size: " << sp.size() << endl;
 		cout << "sp : "<< endl;
+
+
 		for (int i = 0; i < sp.size(); i++)
 		{
-			NTree t(sp[i]);
+			NTree t(sp[i]);   //generate TreeNode From sp.
 			getTrees()->push_back(t);
 			cout << "x: " << sp[i]->getX() << " y:" << sp[i]->getY() << endl;
 			for (int z = 0; z < trees.size(); z++)
@@ -213,51 +226,96 @@ public:
 				if (sp[i]->getX() == getTrees(z)->key().getX() && sp[i]->getY() == getTrees(z)->key().getY())
 				{
 					no = z;//get the index
-					z = trees.size();//break z for loop
+					break;
 				}
 			}
-			//bug
-			cout << "Trees" << endl;
-			for (int z = 0; z < getTrees()->size(); z++)
-			{
-				cout << "x: " << getTrees(z)->key().getX() << " y: " << getTrees(z)->key().getY() << endl;
-				cout << "add: "<< &getTrees(z)->key()<< endl;
-				cout << "next" << endl;
-			}
-			//cout << getTrees(0)->key().getX();
-			//if not attach tree to tr then everything is fine.
-			tr->attachNTree(0, &getTrees()->at(0));
-			//tr->attachNTree(1, getTrees(1));
-			//tr->attachNTree(2, getTrees(2));
-			//need attach trees[z] to tr.
+			tr->attachNTree(i, getTrees(no));
 		}
-		/*
 
-		cout << "Trees" << endl;
-		for (int z = 0; z < 3; z++)
-		{
-			cout << "here" << endl;
-			cout << "x: " << tr[z].key().getX() << endl;
-			cout<<" y: " << tr[z].key().getY() << endl;
-		}
-		
-		
-		for (int i = 0; i < sp.size(); i++)
-		{
-			tr.attachNTree(i, &trees[z]);
-			cout << "x : " << tr[i].key().getX() << " y:" << tr[i].key().getY() << endl;
-
-		}
+		cout << "done" << endl;
 		for (int j = 0; j < sp.size(); j++)
 		{
 
 			level += 1;
-			cout << "in"<< endl;
-			autoAttach(tr[j]);
+			cout << "in. TR " <<j<<endl;
+			autoAttach(&tr[j]);
 			level -= 1;
 		}
 		cout << "out. level:" << level << endl;
-		*/
 	}
 };
 
+
+
+
+
+/*
+	void attachRoot()
+	{
+		cout << "attach Root" << endl;
+		vector<Space*> sp = getNearBy(root.key().getX(), root.key().getY());
+		cout <<endl<< "SP:" << endl;
+		//tree nodes generated
+		for (int i = 0; i < sp.size(); i++)
+		{
+			cout << "X:"<<sp[i]->getX() << " Y:" << sp[i]->getY() << endl;
+			NTree t(sp[i]);
+			trees.push_back(t);
+		}
+
+		for (int j = 0; j < trees.size(); j++)
+		{
+
+			for (int i = 0; i < sp.size(); i++)
+			{
+				if (sp[i]->getX() == getTrees(j)->key().getX() && sp[i]->getY() == getTrees(j)->key().getY())
+				{
+					root.attachNTree(i, getTrees(j));
+				}
+			}
+		}
+		cout << "root:" << endl;
+		cout<<"x:" << root.key().getX() << " y:" << root.key().getY() << endl;
+		int z = sp.size();
+		for (int k = 0; k < z; k++)
+		{
+			cout << "root[" << k << "]: "<< "x:" << root[k].key().getX() << " y:" << root[k].key().getY() << endl;
+			vector<Space*> sp = getNearBy(root[k].key().getX(), root[k].key().getY());
+			cout << endl << "SP:" << endl;
+			//tree nodes generated
+			for (int i = 0; i < sp.size(); i++)
+			{
+				cout<<i << ".   X:" << sp[i]->getX() << " Y:" << sp[i]->getY() << endl;
+
+				NTree t(sp[i]);
+				cout << "NTree t(sp[i]);" << endl;
+				trees.push_back(t);
+				cout << "trees.push_back(t);" << endl;
+			}
+			cout << "outside for loop" << endl;
+		}
+
+
+	}
+
+
+		void checkDirection(int x, int y)
+	{
+		if (map->isUp(x))
+		{
+			cout <<"x(Up): "<< x - 1 << "is possible in this map" << endl;
+		}
+		if (map->isDown(x))
+		{
+			cout << "x(Down): " << x + 1 << "is possible in this map" << endl;
+		}
+		if (map->isLeft(y))
+		{
+			cout << "y(Left): " << y - 1 << "is possible in this map" << endl;
+		}
+		if (map->isRight(y))
+		{
+			cout << "y(Right): " << y + 1 << "is possible in this map" << endl;
+		}
+	}
+	*/

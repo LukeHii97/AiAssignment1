@@ -17,7 +17,7 @@ public:
 			fNodes[i] = NULL;
 		}
 	}
-	NTree(Space* aKey) // a simple NTree with key and N subtrees
+		NTree(Space* aKey) // a simple NTree with key and N subtrees
 	{
 		fKey = aKey;
 		// Initialize all nodes to the address of NIL
@@ -29,12 +29,14 @@ public:
 	//destructor
 	~NTree()
 	{
+		/*
 		for (int i = 0; i < 4; i++)
 		{
 			// Delete nodes that already have value
-			if (fNodes[i] != NULL)
+			if (fNodes[i] != NULL) {
 				delete fNodes[i];
-		}
+			}
+		}*/
 	}
 
 	bool isEmpty()  // is tree empty
